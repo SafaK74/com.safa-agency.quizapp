@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp/services/auth.dart';
 import 'package:quizapp/shared/bottom_nav.dart';
 
 class Profile extends StatelessWidget {
@@ -9,6 +10,13 @@ class Profile extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
+      ),
+      body: ElevatedButton(
+        child: Text('Sign Out'),
+        onPressed: () async {
+          await AuthService().signOut();
+          Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+        },
       ),
     );
   }
